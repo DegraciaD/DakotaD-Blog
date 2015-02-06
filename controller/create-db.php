@@ -5,7 +5,7 @@ require_once(__DIR__ . "/../model/database.php");
 $connection = new mysqli($host, $username, $password);
 
 if ($connection->connect_error) {
-    die("Error: " . $connection->connect_error);
+    die("<P>Error: " . $connection->connect_error . "</P>");
 }
 
 $exists = $connection->select_db($database);
@@ -14,11 +14,11 @@ if(!$exists) {
     $query = $connection->query("CREATE DATABASE $database");
 
     if($query) {
-       echo"Successfully created  database: " . $database;
+       echo"<P>Successfully created  database: " . $database . "</P>";
     }
 } 
 else {
-   echo "Database already exists.";
+   echo "<P>Database already exists.</P>";
 }
 
 $query = $connection->query ("CREATE TABLE posts("
@@ -28,10 +28,10 @@ $query = $connection->query ("CREATE TABLE posts("
         . "PRIMARY KEY (id))");
 
 if($query){
-    echo "Succesfully create table : posts";
+    echo "<P>Succesfully create table : posts</P>";
 }
 else{
-    echo "$connection->error";
+    echo "<P>$connection->error</P>";
 }
 $connection->close();
 
