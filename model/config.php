@@ -1,4 +1,7 @@
 <?php
+  require_once(__DIR__ . "/../model/Database.php");
+  session_start();
+
   $path = "/DakotaD-Blog/";
   
   $host = "localhost";
@@ -6,4 +9,8 @@
   $password = "root";
   $database = "blog_db";
   
-  $connection = new database($host, $username, $password, $database);
+  if(!isset($_SESSION["connection"])){
+    $connection = new Database($host, $username, $password, $database);
+    $_SESSION["connection"] = $connection;
+  }
+  ?>
